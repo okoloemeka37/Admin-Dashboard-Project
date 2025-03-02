@@ -17,11 +17,16 @@ export default function DashboardPage() {
     const router=useRouter()
   const [users, setUsers] = useState<User[]>([]);
   const [IsModalOpen, setIsModalOpen] = useState(false)
-  const token=localStorage.getItem('authToken');
+  const [token, settoken] = useState<string|null>(null)
 
   const [data, setdata] = useState({name:'',email:'',password:''})
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    settoken(token);
+  }, [])
+  useEffect(() => {
+    
    if (token==null) {
     router.push('/')
    }else{
