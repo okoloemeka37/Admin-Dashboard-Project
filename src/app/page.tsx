@@ -19,7 +19,13 @@ export default function Login () {
      localStorage.setItem('authToken', response.token);
      router.push('/dashboard');
      } catch (error) {
-        setError(error.response.data.errors);   
+        if ((error as any).response && (error as any).response.data) {
+
+            setError((error as any).response.data.errors);
+         
+        } else {
+          setError({ email: 'Unknown error', password: 'Unknown error' });
+        }
      }
     }
     return (
