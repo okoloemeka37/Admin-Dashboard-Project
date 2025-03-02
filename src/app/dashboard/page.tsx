@@ -22,12 +22,10 @@ export default function DashboardPage() {
   const [data, setdata] = useState({name:'',email:'',password:''})
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const toked = localStorage.getItem('authToken');
     settoken(token);
-  }, [])
-  useEffect(() => {
-    
-   if (token==null) {
+       
+   if (toked==null) {
     router.push('/')
    }else{
    async function getusers (){
@@ -36,6 +34,9 @@ export default function DashboardPage() {
     }
     getusers()
    }
+  }, [])
+  useEffect(() => {
+ 
   
   
   }, [token])
