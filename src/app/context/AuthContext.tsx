@@ -26,7 +26,7 @@ const [token,settoken]=useState<string|null>(null);
 
 useEffect(() => {
 const token=localStorage.getItem("authToken");
-if (token) {
+if (token !==null) {
     setisAuthenticated(true);
     settoken(token);
 }

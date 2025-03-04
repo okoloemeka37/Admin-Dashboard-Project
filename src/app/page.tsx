@@ -12,10 +12,12 @@ const router=useRouter()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const  [error, setError] = useState({'email':'','password':''});
-  const {isAuthenticated}=useAuth();
+ 
 
   useEffect(() => {
-    if (isAuthenticated) {
+    const token=localStorage.getItem('authToken');
+    if (token!== null) {
+    
       router.push('/dashboard')
     }
   }, [])
