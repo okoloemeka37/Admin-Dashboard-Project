@@ -74,7 +74,10 @@ const {isAuthenticated}=useAuth()
 
 async function del(id: number, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
   // Remove the row from the table
-  (e.target as HTMLElement).parentElement!.parentElement!.remove();
+  const matchingUsers = users.filter((obj) => obj.id !== id);
+  console.log(matchingUsers)
+  setUsers(matchingUsers);
+  //(e.target as HTMLElement).parentElement!.parentElement!.remove();
  banner.current?.classList.remove('hidden')
   const res = await api.delete('/deleteuser/' + id);
 if (res.status=200) {
