@@ -52,9 +52,13 @@ console.log(response)
     }
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        
         <div className="bg-white p-6 rounded-lg shadow-lg w-96">
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+          <p className="text-2xl">Login with email:madyson21@example.org,
+            <br></br> password:password</p>
           <p className="text-red-600">{GenError}</p>
+          
           <form className="space-y-4" onSubmit={handleLogin}>
             <input
               type="email"
