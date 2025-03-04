@@ -1,24 +1,37 @@
 'use client'
 import { api } from 'next-laravel-apihelper';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import ButtonLoaders from './conponents/Loaders';
+import { useAuth } from './context/AuthContext';
 
 export default function Login () {
-  const router=useRouter();
+const router=useRouter()
+  const {login}=useAuth();
+  const [isloading, setisloading] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const  [error, setError] = useState({'email':'','password':''});
+  const {isAuthenticated}=useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard')
+    }
+  }, [])
   
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 
       e.preventDefault();
+      setisloading(true);
      try {
       const response = await api.post("/login", { email, password });
-      console.log(response)
+setisloading(false);
      localStorage.setItem('authToken', response.token);
-     router.push('/dashboard');
+    login(response.token);
      } catch (error) {
+      setisloading(false);
         if ((error as any).response && (error as any).response.data) {
 
             setError((error as any).response.data.errors);
@@ -35,7 +48,7 @@ export default function Login () {
           <form className="space-y-4" onSubmit={handleLogin}>
             <input
               type="email"
-              value={email} onChange={(e) => setEmail(e.target.value)}
+              value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email'
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className="text-red-600">{error.email}</p>
@@ -45,9 +58,10 @@ export default function Login () {
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className="text-red-600">{error.password}</p>
-            <button className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
+            {isloading?<ButtonLoaders ty={'login you in'} />:  <button className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
               Login
-            </button>
+            </button>}
+          
           </form>
         </div>
       </div>
