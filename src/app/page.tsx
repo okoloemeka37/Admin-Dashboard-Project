@@ -12,6 +12,7 @@ const router=useRouter()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const  [error, setError] = useState({'email':'','password':''});
+    const [GenError,setGenError]=useState('');
  
 
   useEffect(() => {
@@ -30,8 +31,14 @@ const router=useRouter()
      try {
       const response = await api.post("/login", { email, password });
 setisloading(false);
-     localStorage.setItem('authToken', response.token);
+console.log(response)
+    if (response.status==401) {
+      console.log(response)
+      setGenError(response.error);
+    }else{
+       localStorage.setItem('authToken', response.token);
     login(response.token);
+    }
      } catch (error) {
       setisloading(false);
         if ((error as any).response && (error as any).response.data) {
@@ -47,6 +54,7 @@ setisloading(false);
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-6 rounded-lg shadow-lg w-96">
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+          <p className="text-red-600">{GenError}</p>
           <form className="space-y-4" onSubmit={handleLogin}>
             <input
               type="email"
