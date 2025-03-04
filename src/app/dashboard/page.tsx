@@ -93,15 +93,17 @@ const editUser = (id: number) => {
 
 
 async function update(id:number){
+  setisloading(true);
   try {
     const res=await api.put('/updateuser/'+id,editdata)
     if (res.status==200) {
       setUsers(res.user)
       setIsEditModalOpen(false)
+      setisloading(false);
   }
   } catch (error) {
     setaddError((error as any).response.data.errors)
-  
+    setisloading(false);
   }
  
 }
