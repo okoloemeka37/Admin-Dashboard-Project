@@ -142,8 +142,8 @@ async function update(id:number){
               {users.map((user,index) => (
                 <tr key={index} className="border-b hover:bg-gray-100">
                  
-                  <td className="p-3">{user.name}</td>
-                  <td className="p-3">{user.email}</td>
+                  <td className="p-3 text-black">{user.name}</td>
+                  <td className="p-3  text-black">{user.email}</td>
                   <td className="p-3"><button className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition duration-200 mr-2" onClick={(e)=>{del(user.id,e)}}>
                       Delete
                     </button>
@@ -174,7 +174,7 @@ async function update(id:number){
               <X size={20} />
             </button>
 
-            <h2 className="text-2xl font-semibold mb-4 text-center">Add User</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center text-black ">Add User</h2>
 
             <input
               type="text"
@@ -190,7 +190,7 @@ async function update(id:number){
              value={data.email}
              onChange={(e)=>setdata({...data,email:e.target.value})}
              
-              className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-black border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className='text-red-600'>{addError.email}</p>
               <input
@@ -199,7 +199,7 @@ async function update(id:number){
              value={data.password}
              onChange={(e)=>setdata({...data,password:e.target.value})}
              
-              className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-black border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className='text-red-600'>{addError.password}</p>
 
@@ -230,14 +230,14 @@ async function update(id:number){
               <X size={20} />
             </button>
 
-            <h2 className="text-2xl font-semibold mb-4 text-center">Edit User</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-centertext-black ">Edit User</h2>
 
             <input
               type="text"
               placeholder="Full Name"
               value={editdata.name}
                 onChange={(e)=>seteditdata({...editdata,name:e.target.value})}             
-              className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-black border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 <p className='text-red-600'>{addError.name}</p>
             <input
@@ -246,7 +246,7 @@ async function update(id:number){
              value={editdata.email}
              onChange={(e)=>seteditdata({...editdata,email:e.target.value})}
              
-              className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-black border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className='text-red-600'>{addError.email}</p>
             
