@@ -54,8 +54,8 @@ console.log(response)
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         
         <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-          <p className="text-2xl">Login with email:madyson21@example.org,
+          <h2 className="text-2xl font-bold mb-4 text-center text-black ">Login</h2>
+          <p className="text-2xl text-black">Login with email:madyson21@example.org,
             <br></br> password:password</p>
           <p className="text-red-600">{GenError}</p>
           
@@ -63,13 +63,13 @@ console.log(response)
             <input
               type="email"
               value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email'
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-black p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className="text-red-600">{error.email}</p>
             <input
               type="password"
             value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-black p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className="text-red-600">{error.password}</p>
             {isloading?<ButtonLoaders ty={'login you in'} />:  <button className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
