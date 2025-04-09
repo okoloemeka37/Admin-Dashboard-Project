@@ -30,24 +30,25 @@ const router=useRouter()
       setisloading(true);
      try {
       const response = await api.post("/login", { email, password });
-setisloading(false);
+      console.log(response)
+ setisloading(false);
 console.log(response)
     if (response.status==401) {
       console.log(response)
       setGenError(response.error);
     }else{
        localStorage.setItem('authToken', response.token);
-    login(response.token);
-    }
-     } catch (error) {
-      setisloading(false);
+    login(response.token);} 
+    
+     } catch (error) {setisloading(false);
+ 
         if ((error as any).response && (error as any).response.data) {
 
             setError((error as any).response.data.errors);
          
         } else {
           setError({ email: 'Unknown error', password: 'Unknown error' });
-        }
+        } 
      }
     }
     return (
